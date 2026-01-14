@@ -8,6 +8,63 @@ type BaseProps = {
   className?: string;
 };
 
+type AnchorProps = BaseProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children"> & {
+    kind?: "link"; // default
+    href: string;
+  };
+
+type ButtonProps = BaseProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
+    kind: "button";
+    href?: never;
+  };
+
+type Props = AnchorProps | ButtonProps;
+
+function classes(variant: Variant, className: string) {
+  const base =
+    "inline-flex items-center justify-center rounded-full px-4 py-3 font-semibold transition " +
+    "border border-transparent select-none";
+  const primary =
+    "bg-gradient-to-r from-sky-400/95 to-violet-500/90 text-[#07101a] " +
+    "shadow-[0_14px_45px_-22px_rgba(56,189,248,0.6)] hover:translate-y-[-1px]";
+  const ghost =
+    "bg-white/5 text-white border-white/15 hover:bg-white/10 hover:border-white/20 hover:translate-y-[-1px]";
+
+  return [base, variant === "primary" ? primary : ghost, className].join(" ").trim();
+}
+
+export default function Button(props: Props) {
+  const variant = props.variant ?? "primary";
+  const className = classes(variant, props.className ?? "");
+
+  // ✅ Real <button>
+  if (props.kind === "button") {
+    const { children, variant: _v, className: _c, kind: _k, ...buttonProps } = props;
+    return (
+      <button className={className} {...buttonProps}>
+        {children}
+      </button>
+    );
+  }
+
+  // ✅ Link <a> (default)
+  const { children, variant: _v, className: _c, kind: _k, ...anchorProps } = props;
+  return (
+    <a className={className} {...anchorProps}>
+      {children}
+    </a>
+  );
+}
+type Variant = "primary" | "ghost";
+
+type BaseProps = {
+  children: React.ReactNode;
+  variant?: Variant;
+  className?: string;
+};
+
 type AnchorButtonProps = BaseProps &
   React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
