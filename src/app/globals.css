@@ -60,12 +60,17 @@ body{
     linear-gradient(180deg, var(--bg0), var(--bg1)) !important;
 }
 
+/* prevent accidental white wrappers */
 main{ background: transparent; }
 
 ::selection{ background: rgba(56,189,248,0.25); }
 
 /* ---- Typography helpers (match your TSX usage) ---- */
-.h1,.h2,.h3{ margin:0 0 12px; font-weight: 800; letter-spacing: -0.02em; }
+.h1,.h2,.h3{
+  margin:0 0 12px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 .h1{ font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; }
 .h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); }
 .h3{ font-size: 1.25rem; }
@@ -84,6 +89,17 @@ main{ background: transparent; }
   color: rgba(234,242,255,0.65);
 }
 
+/* Nice readable content width + vertical rhythm helpers */
+.prose{
+  max-width: 70ch;
+}
+.stack > * + *{
+  margin-top: 14px;
+}
+@media (min-width: 768px){
+  .stack > * + *{ margin-top: 18px; }
+}
+
 /* ---- “Glass” surfaces ---- */
 .glass{
   background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
@@ -94,7 +110,7 @@ main{ background: transparent; }
   box-shadow: var(--shadow);
 }
 
-/* Optional: if you want that darker “container sheet” from the HTML pages */
+/* Optional: darker “container sheet” from the old HTML pages */
 .sheet{
   background: rgba(0,0,0,0.50);
   border: 1px solid rgba(255,255,255,0.14);
