@@ -1,9 +1,14 @@
-export default function Card({
-  children,
-  className = "",
-}: {
+import React from "react";
+
+type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
   className?: string;
-}) {
-  return <div className={`glass rounded-2xl ${className}`}>{children}</div>;
+};
+
+export default function Card({ children, className = "", ...props }: CardProps) {
+  return (
+    <div className={`card ${className}`.trim()} {...props}>
+      {children}
+    </div>
+  );
 }
