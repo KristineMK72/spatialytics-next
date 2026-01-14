@@ -1,9 +1,14 @@
-export default function Container({
-  children,
-  className = "",
-}: {
+import React from "react";
+
+type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
   className?: string;
-}) {
-  return <div className={`mx-auto max-w-6xl px-4 ${className}`}>{children}</div>;
+};
+
+export default function Container({ children, className = "", ...props }: ContainerProps) {
+  return (
+    <div className={`container ${className}`.trim()} {...props}>
+      {children}
+    </div>
+  );
 }
