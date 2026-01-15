@@ -1,3 +1,4 @@
+
 import React from "react";
 
 type Variant = "primary" | "ghost";
@@ -7,6 +8,48 @@ type BaseProps = {
   variant?: Variant;
   className?: string;
 };
+
+import Link from "next/link";
+import React from "react";
+
+type Variant = "primary" | "ghost";
+
+export default function Button({
+  href,
+  children,
+  variant = "primary",
+  className = "",
+  target,
+  rel,
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: Variant;
+  className?: string;
+  target?: string;
+  rel?: string;
+}) {
+  const base =
+    "inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold transition " +
+    "border border-transparent select-none";
+  const primary =
+    "bg-gradient-to-r from-sky-400/95 to-violet-500/90 text-[#07101a] " +
+    "shadow-[0_14px_45px_-22px_rgba(56,189,248,0.6)] hover:translate-y-[-1px] hover:opacity-95";
+  const ghost =
+    "border border-white/15 bg-white/5 text-white hover:bg-white/10 hover:translate-y-[-1px]";
+
+  const classes = `${base} ${variant === "ghost" ? ghost : primary} ${className}`;
+
+  const isExternal = /^https?:\/\//.test(href);
+
+  if (isExternal) {
+    return (
+      <a className={classes} href={href} target={target} rel={rel}>
+        {children}
+      </a>
+    );
+  }
+
 
 type AnchorProps = BaseProps &
   Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children"> & {
@@ -52,7 +95,11 @@ export default function Button(props: Props) {
   // ✅ Link <a> (default)
   const { children, variant: _v, className: _c, kind: _k, ...anchorProps } = props;
   return (
+<<<<<<< HEAD
     <a className={className} {...anchorProps}>
+=======
+    <Link className={classes} href={href}>
+>>>>>>> d976adc (Fix Button.tsx (remove duplicate component + clean imports))
       {children}
     </a>
   );
