@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link"; // ← added this import
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import FadeIn from "@/components/FadeIn";
 import Card from "@/components/Card";
-import { Button } from "@/components/ui/button";  // ← ensure this is the shadcn/ui import
+import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -197,8 +198,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="mt-10">
-                  <Button href="/services" variant="ghost">
-                    See services →
+                  <Button asChild variant="ghost">
+                    <Link href="/services">
+                      See services →
+                    </Link>
                   </Button>
                 </div>
               </Card>
