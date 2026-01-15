@@ -10,21 +10,23 @@ import Button from "@/components/Button";
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
 
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
 
     try {
-      const res = await fetch("https://formspree.io/f/mrbrzqva", {
+      const response = await fetch("https://formspree.io/f/mrbrzqva", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
-      if (res.ok) {
+      if (response.ok) {
         setStatus("sent");
         form.reset();
       } else {
@@ -34,6 +36,10 @@ export default function ContactPage() {
       setStatus("error");
     }
   }
+
+  const isSending = status === "sending";
+  const isSuccess = status === "sent";
+  const isError = status === "error";
 
   return (
     <main>
@@ -49,30 +55,31 @@ export default function ContactPage() {
         </FadeIn>
 
         <Section>
-          <div className="grid gap-4 md:grid-cols-2">
-            {/* Form */}
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+            {/* Left: Contact Form */}
             <FadeIn>
               <Card className="p-8 md:p-10">
                 <div className="kicker">Send a message</div>
                 <h2 className="h2 mt-2">Tell me what you’re building</h2>
 
-                <form className="mt-6 stack" onSubmit={onSubmit}>
-                  <div className="stack">
-                    <label className="text-sm text-white/80" htmlFor="name">
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="block text-sm text-white/80 font-medium">
                       Name
                     </label>
                     <input
                       id="name"
                       name="name"
+                      type="text"
                       required
-                      className="glass"
-                      style={{ padding: "12px 14px", borderRadius: 14, width: "100%", outline: "none" }}
+                      disabled={isSending}
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition"
                       placeholder="Your name"
                     />
                   </div>
 
-                  <div className="stack">
-                    <label className="text-sm text-white/80" htmlFor="email">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm text-white/80 font-medium">
                       Email
                     </label>
                     <input
@@ -80,37 +87,38 @@ export default function ContactPage() {
                       name="email"
                       type="email"
                       required
-                      className="glass"
-                      style={{ padding: "12px 14px", borderRadius: 14, width: "100%", outline: "none" }}
+                      disabled={isSending}
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition"
                       placeholder="you@email.com"
                     />
                   </div>
 
-                  <div className="stack">
-                    <label className="text-sm text-white/80" htmlFor="phone">
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-sm text-white/80 font-medium">
                       Phone (optional)
                     </label>
                     <input
                       id="phone"
                       name="phone"
-                      className="glass"
-                      style={{ padding: "12px 14px", borderRadius: 14, width: "100%", outline: "none" }}
+                      type="tel"
+                      disabled={isSending}
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition"
                       placeholder="(###) ###-####"
                     />
                   </div>
 
-                  <div className="stack">
-                    <label className="text-sm text-white/80" htmlFor="project-type">
+                  <div className="space-y-2">
+                    <label htmlFor="project-type" className="block text-sm text-white/80 font-medium">
                       Project type
                     </label>
                     <select
                       id="project-type"
                       name="project-type"
-                      className="glass"
-                      style={{ padding: "12px 14px", borderRadius: 14, width: "100%", outline: "none" }}
+                      disabled={isSending}
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition bg-transparent"
                       defaultValue=""
                     >
-                      <option value="">Select a project type</option>
+                      <option value="" disabled>Select a project type</option>
                       <option value="gis">GIS Web Application</option>
                       <option value="web">Custom Web Development</option>
                       <option value="data">Data Automation</option>
@@ -118,34 +126,39 @@ export default function ContactPage() {
                     </select>
                   </div>
 
-                  <div className="stack">
-                    <label className="text-sm text-white/80" htmlFor="message">
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-sm text-white/80 font-medium">
                       Message
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                      rows={6}
+                      rows={5}
                       required
-                      className="glass"
-                      style={{ padding: "12px 14px", borderRadius: 14, width: "100%", outline: "none", resize: "vertical" }}
+                      disabled={isSending}
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition resize-y min-h-[120px]"
                       placeholder="What’s the goal, the audience, and the data source?"
                     />
                   </div>
 
-                  <div className="mt-4 flex gap-3 flex-wrap items-center">
-                    <Button href="#" asButton type="submit" disabled={status === "sending"}>
-                      {status === "sending" ? "Sending..." : "Send message"}
+                  <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <Button
+                      type="submit"
+                      disabled={isSending}
+                      className={isSending ? "opacity-70 cursor-not-allowed" : ""}
+                    >
+                      {isSending ? "Sending..." : "Send message"}
                     </Button>
 
-                    {status === "sent" && (
-                      <span className="text-sm" style={{ color: "rgba(34,197,94,0.95)", fontWeight: 800 }}>
-                        ✅ Message sent!
+                    {isSuccess && (
+                      <span className="text-green-400 font-semibold flex items-center gap-2">
+                        <span>✅ Message sent!</span>
                       </span>
                     )}
-                    {status === "error" && (
-                      <span className="text-sm" style={{ color: "rgba(239,68,68,0.95)", fontWeight: 800 }}>
-                        ❌ Something went wrong. Try again.
+
+                    {isError && (
+                      <span className="text-red-400 font-semibold flex items-center gap-2">
+                        <span>❌ Something went wrong. Please try again.</span>
                       </span>
                     )}
                   </div>
@@ -153,35 +166,35 @@ export default function ContactPage() {
               </Card>
             </FadeIn>
 
-            {/* Details */}
+            {/* Right: Contact Info */}
             <FadeIn>
-              <Card className="p-8 md:p-10">
+              <Card className="p-8 md:p-10 h-full">
                 <div className="kicker">Contact info</div>
                 <h2 className="h2 mt-2">Reach me directly</h2>
 
-                <div className="mt-6 stack prose">
-                  <p className="p">
-                    <span className="text-white/80" style={{ fontWeight: 900 }}>
-                      Email:
-                    </span>{" "}
-                    <a className="underline underline-offset-4" href="mailto:kkahler190@gmail.com">
+                <div className="mt-8 space-y-6 prose">
+                  <p>
+                    <strong className="text-white/90">Email:</strong>{" "}
+                    <a
+                      href="mailto:kkahler190@gmail.com"
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-4 transition"
+                    >
                       kkahler190@gmail.com
                     </a>
                   </p>
-                  <p className="p">
-                    <span className="text-white/80" style={{ fontWeight: 900 }}>
-                      Location:
-                    </span>{" "}
-                    Minnesota, USA
+
+                  <p>
+                    <strong className="text-white/90">Location:</strong> Minnesota, USA
                   </p>
-                  <p className="p">
+
+                  <p className="text-white/80">
                     Prefer a quick consult call? Send a message with a few time windows and I’ll reply with options.
                   </p>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-10">
                   <Button href="/services" variant="ghost">
-                    See services
+                    See services →
                   </Button>
                 </div>
               </Card>
