@@ -5,7 +5,7 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import FadeIn from "@/components/FadeIn";
 import Card from "@/components/Card";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";  // ← ensure this is the shadcn/ui import
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -115,10 +115,12 @@ export default function ContactPage() {
                       id="project-type"
                       name="project-type"
                       disabled={isSending}
-                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition bg-transparent"
+                      className="glass w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-sky-400/50 transition bg-transparent text-white"
                       defaultValue=""
                     >
-                      <option value="" disabled>Select a project type</option>
+                      <option value="" disabled className="text-gray-500">
+                        Select a project type
+                      </option>
                       <option value="gis">GIS Web Application</option>
                       <option value="web">Custom Web Development</option>
                       <option value="data">Data Automation</option>
@@ -141,24 +143,26 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="mt-6 flex flex-wrap items-center gap-4">
-                    <Button
-                      type="submit"
-                      disabled={isSending}
-                      className={isSending ? "opacity-70 cursor-not-allowed" : ""}
-                    >
-                      {isSending ? "Sending..." : "Send message"}
+                  <div className="mt-8 flex flex-wrap items-center gap-4">
+                    <Button asChild>
+                      <button
+                        type="submit"
+                        disabled={isSending}
+                        className={isSending ? "opacity-70 cursor-not-allowed" : ""}
+                      >
+                        {isSending ? "Sending..." : "Send message"}
+                      </button>
                     </Button>
 
                     {isSuccess && (
-                      <span className="text-green-400 font-semibold flex items-center gap-2">
-                        <span>✅ Message sent!</span>
+                      <span className="text-green-400 font-semibold flex items-center gap-2 animate-fade-in">
+                        ✅ Message sent!
                       </span>
                     )}
 
                     {isError && (
-                      <span className="text-red-400 font-semibold flex items-center gap-2">
-                        <span>❌ Something went wrong. Please try again.</span>
+                      <span className="text-red-400 font-semibold flex items-center gap-2 animate-fade-in">
+                        ❌ Something went wrong. Please try again.
                       </span>
                     )}
                   </div>
