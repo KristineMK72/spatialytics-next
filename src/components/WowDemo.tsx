@@ -2,8 +2,8 @@
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 
-const DEMO_URL = "https://bear-habitat-3d.vercel.app"; // <-- change to your live bear demo
-const CODE_URL = "https://github.com/KristineMK72/bear-habitat-3d"; // <-- optional
+const DEMO_URL = "https://bear-habitat-3d.vercel.app";
+const CODE_URL = "https://github.com/KristineMK72/bear-habitat-3d";
 
 export default function WowDemo() {
   return (
@@ -13,16 +13,17 @@ export default function WowDemo() {
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="min-w-[260px]">
           <h3 className="text-xl font-semibold">3D Bear Habitat Explorer</h3>
-          <p classng className="p mt-2 max-w-2xl">
-            Live WebGL 3D terrain + habitat overlays (Next.js + MapLibre). This is a teaser build — more MN layers coming next.
+          <p className="p mt-2 max-w-2xl">
+            Live WebGL terrain + habitat overlays (Next.js + MapLibre). This is a teaser build — Minnesota layers and real
+            bear data are coming next.
           </p>
         </div>
 
         <div className="flex gap-2 flex-wrap">
-          <Button href={DEMO_URL} target="_blank">
+          <Button href={DEMO_URL} target="_blank" rel="noreferrer">
             Open demo →
           </Button>
-          <Button href={CODE_URL} variant="ghost" target="_blank">
+          <Button href={CODE_URL} variant="ghost" target="_blank" rel="noreferrer">
             View repo
           </Button>
         </div>
@@ -35,11 +36,13 @@ export default function WowDemo() {
           className="w-full h-[420px]"
           loading="lazy"
           style={{ border: "none" }}
+          // these help some embeds behave better
+          allow="fullscreen; geolocation *; clipboard-write *"
         />
       </div>
 
       <div className="mt-3 text-xs text-white/60">
-        If the embed is blank, the demo is likely protected (Vercel auth/password) — the “Open demo” button will still work.
+        If the embed is blank, the demo may be blocking iframes. The “Open demo” button will always work.
       </div>
     </Card>
   );
