@@ -56,17 +56,20 @@ export default function ServicesPage() {
   return (
     <main>
       {/* HERO */}
-      <Section variant="hero">
+      <Section className="hero">
         <Container>
           <div style={{ maxWidth: 920 }}>
             <div className="kicker">Spatialytics</div>
+
             <h1 className="h1" style={{ marginTop: 10 }}>
               Services & Packages
             </h1>
+
             <p className="p" style={{ marginTop: 10, maxWidth: 820 }}>
               Geospatial, web, and data solutions designed to be clear, usable, and mission-aligned —
               from quick wins to full builds.
             </p>
+
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}>
               <Button href="/contact">Request a quote</Button>
               <Button href="/projects" variant="ghost">
@@ -92,6 +95,7 @@ export default function ServicesPage() {
               <Card key={s.title} style={{ padding: 18 }}>
                 <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <div
+                    aria-hidden="true"
                     style={{
                       width: 44,
                       height: 44,
@@ -103,7 +107,6 @@ export default function ServicesPage() {
                       fontSize: 22,
                       flex: "0 0 auto",
                     }}
-                    aria-hidden="true"
                   >
                     {s.icon}
                   </div>
@@ -113,6 +116,7 @@ export default function ServicesPage() {
                     <p className="p" style={{ marginTop: 8 }}>
                       {s.desc}
                     </p>
+
                     <div style={{ marginTop: 12 }}>
                       <Button href={s.href} variant="ghost">
                         {s.cta}
@@ -126,7 +130,7 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* PACKAGES / PRICING */}
+      {/* PACKAGES */}
       <Section>
         <Container>
           <div style={{ textAlign: "center" }}>
@@ -147,8 +151,16 @@ export default function ServicesPage() {
                   boxShadow: p.highlight ? "0 18px 50px rgba(99,102,241,0.12)" : undefined,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    justifyContent: "space-between",
+                    gap: 12,
+                  }}
+                >
                   <div style={{ fontWeight: 950, fontSize: 18 }}>{p.name}</div>
+
                   {p.highlight ? (
                     <span
                       style={{
@@ -194,8 +206,8 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* CTA BANNER */}
-      <Section variant="cta">
+      {/* CTA */}
+      <Section className="cta">
         <Container>
           <Card style={{ padding: 20 }}>
             <div
@@ -216,6 +228,7 @@ export default function ServicesPage() {
                   Tell me what you’re trying to build (or fix). I’ll suggest the fastest path and a realistic scope.
                 </p>
               </div>
+
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Button href="/contact">Get started</Button>
                 <Button href="/projects" variant="ghost">
