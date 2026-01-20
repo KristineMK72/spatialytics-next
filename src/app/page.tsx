@@ -11,21 +11,61 @@ import { projects } from "@/content/projects";
 
 const PROOF = [
   {
-    title: "Modern Web GIS",
-    desc: "Next.js + Leaflet/MapLibre patterns that feel premium — not portal-y.",
+    title: "Web GIS that feels like a product",
+    desc: "MapLibre/Leaflet builds with clean UX — not clunky portal experiences.",
   },
   {
-    title: "Storytelling UX",
-    desc: "Guided exploration that keeps layers + narrative clear and focused.",
+    title: "Story-first interaction design",
+    desc: "Guided exploration that keeps layers, narrative, and decisions clear.",
   },
   {
-    title: "Automation & Pipelines",
+    title: "Automation & reliable pipelines",
     desc: "Fresh data, scheduled updates, and reproducible workflows you can trust.",
   },
 ] as const;
 
+type FeaturedBuild = {
+  title: string;
+  desc: string;
+  href: string;
+  tag: string;
+};
+
+const FEATURED_BUILDS: FeaturedBuild[] = [
+  {
+    title: "3D Bear Habitat Demo",
+    desc: "Live WebGL terrain + overlays — a teaser build with more layers coming.",
+    href: "https://bear-habitat-3d.vercel.app/",
+    tag: "WebGL · MapLibre",
+  },
+  {
+    title: "371 / EIA Concept Demo",
+    desc: "A public-facing explainer with visuals designed for clarity and buy-in.",
+    href: "https://371-eia.vercel.app/",
+    tag: "Civic · Explainer",
+  },
+  {
+    title: "Passport to Adventure",
+    desc: "A travel landing experience built for quick browsing and conversion.",
+    href: "https://kris-passport-to-adventure.vercel.app/",
+    tag: "Web · Landing",
+  },
+  {
+    title: "Political Fundraiser Site",
+    desc: "Simple, effective static fundraising page optimized for sharing.",
+    href: "https://kristinemk72.github.io/PoliticalFundraiser/",
+    tag: "Campaign · Static",
+  },
+  {
+    title: "Grit & Grace Store",
+    desc: "Production e-commerce storefront with Stripe checkout and product UX.",
+    href: "https://www.gritandgrace.buzz/",
+    tag: "E-commerce · Stripe",
+  },
+];
+
 export default function HomePage() {
-  const featured = projects.slice(0, 3);
+  const featuredCaseStudies = projects.slice(0, 3);
 
   return (
     <main>
@@ -46,18 +86,18 @@ export default function HomePage() {
               <h1 className="h1 mt-4">
                 Spatialytics Solutions
                 <br />
-                <span className="opacity-90">Geospatial & web innovation.</span>
+                <span className="opacity-90">Modern web experiences for real-world decisions.</span>
               </h1>
 
               <p className="p mt-6 max-w-2xl">
-                I build modern GIS experiences that feel like real products — interactive maps, dashboards, and
-                full-stack apps that turn complex spatial data into clear decisions.
+                I build interactive systems that turn complex data into clarity — web maps, dashboards,
+                public-facing explainers, and full-stack apps that look polished and ship fast.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/contact">Contact Kris</Button>
                 <Button href="/projects" variant="ghost">
-                  View case studies
+                  View work
                 </Button>
                 <Button href="/services" variant="ghost">
                   Services
@@ -90,12 +130,12 @@ export default function HomePage() {
         <Section>
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto">
-              <div className="kicker">Transforming data into actionable insight</div>
-              <h2 className="h2 mt-2">Turn maps into decisions</h2>
+              <div className="kicker">What I build</div>
+              <h2 className="h2 mt-2">Design-led development with technical depth</h2>
               <p className="p mt-3">
-                Spatial intelligence is only useful when people can actually act on it. I help teams understand
-                what’s happening, where it’s happening, and what to do next — with clean UX, reliable automation,
-                and interactive systems people enjoy using.
+                Spatial intelligence is only useful when people can actually act on it. I help teams and communities
+                understand what’s happening, where it’s happening, and what to do next — with clean UX, reliable
+                automation, and interactive systems people enjoy using.
               </p>
 
               <div className="mt-6 flex gap-3 justify-center flex-wrap">
@@ -108,26 +148,65 @@ export default function HomePage() {
           </FadeIn>
         </Section>
 
-        {/* FEATURED WORK */}
+        {/* FEATURED BUILDS (not only geospatial) */}
         <Section>
           <FadeIn>
             <div className="flex items-end justify-between gap-6 flex-wrap">
               <div>
-                <div className="kicker">Featured work</div>
-                <h2 className="h2 mt-2">Case studies with real outcomes</h2>
+                <div className="kicker">Featured builds</div>
+                <h2 className="h2 mt-2">Live demos & web products</h2>
                 <p className="p mt-2 max-w-2xl">
-                  Each project includes the problem, approach, stack, and what changed because of it.
+                  A quick tour of shipped work — WebGL demos, civic explainers, landing pages, and production sites.
+                </p>
+              </div>
+
+              <div className="flex gap-3 flex-wrap">
+                <Button href="/projects" variant="ghost">
+                  View all work
+                </Button>
+              </div>
+            </div>
+          </FadeIn>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {FEATURED_BUILDS.map((b) => (
+              <FadeIn key={b.title}>
+                <Card className="p-6">
+                  <div className="text-xs text-white/60">{b.tag}</div>
+                  <div className="text-lg font-semibold mt-1">{b.title}</div>
+                  <p className="p mt-2 text-sm">{b.desc}</p>
+
+                  <div className="mt-4">
+                    <Button href={b.href} variant="ghost" target="_blank">
+                      Open →
+                    </Button>
+                  </div>
+                </Card>
+              </FadeIn>
+            ))}
+          </div>
+        </Section>
+
+        {/* CASE STUDIES (your projects array) */}
+        <Section>
+          <FadeIn>
+            <div className="flex items-end justify-between gap-6 flex-wrap">
+              <div>
+                <div className="kicker">Case studies</div>
+                <h2 className="h2 mt-2">Deep dives with outcomes</h2>
+                <p className="p mt-2 max-w-2xl">
+                  When you want the full story: the problem, approach, stack, and what changed because of it.
                 </p>
               </div>
 
               <Button href="/projects" variant="ghost">
-                View all
+                View all case studies
               </Button>
             </div>
           </FadeIn>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {featured.map((p) => (
+            {featuredCaseStudies.map((p) => (
               <FadeIn key={p.slug}>
                 <ProjectCard project={p} />
               </FadeIn>
@@ -140,10 +219,10 @@ export default function HomePage() {
           <FadeIn>
             <Card className="p-8 md:p-10">
               <div className="kicker">Let’s build something sharp</div>
-              <h2 className="h2 mt-2">Want your data to look like a product?</h2>
+              <h2 className="h2 mt-2">Want your data to look like a real product?</h2>
               <p className="p mt-3 max-w-2xl">
                 If you can define the audience and the decision you want them to make, I can build the interactive
-                system that gets them there — fast, clean, and ready to ship.
+                experience that gets them there — fast, clean, and ready to ship.
               </p>
 
               <div className="mt-6 flex gap-3 flex-wrap">
