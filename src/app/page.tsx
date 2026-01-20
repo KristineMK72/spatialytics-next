@@ -5,17 +5,32 @@ import FadeIn from "@/components/FadeIn";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
+import WowDemo from "@/components/WowDemo";
 import { site } from "@/lib/site";
 import { projects } from "@/content/projects";
-import WowDemo from "@/components/WowDemo";
+
+const PROOF = [
+  {
+    title: "Modern Web GIS",
+    desc: "Next.js + Leaflet/MapLibre patterns that feel premium — not portal-y.",
+  },
+  {
+    title: "Storytelling UX",
+    desc: "Guided exploration that keeps layers + narrative clear and focused.",
+  },
+  {
+    title: "Automation & Pipelines",
+    desc: "Fresh data, scheduled updates, and reproducible workflows you can trust.",
+  },
+] as const;
 
 export default function HomePage() {
   const featured = projects.slice(0, 3);
 
   return (
     <main>
-      {/* HERO (merged: Bootstrap hero copy + your glass hero layout) */}
       <Container className="pt-10">
+        {/* HERO */}
         <FadeIn>
           <div className="glass rounded-[2.25rem] p-8 md:p-14 overflow-hidden relative">
             {/* glow blobs */}
@@ -35,9 +50,8 @@ export default function HomePage() {
               </h1>
 
               <p className="p mt-6 max-w-2xl">
-                With over a decade of GIS experience and a passion for modern web technologies, I build
-                solutions that merge geospatial intelligence, automation, and clean design — dashboards,
-                story maps, and full-stack apps that turn complexity into clarity.
+                I build modern GIS experiences that feel like real products — interactive maps, dashboards, and
+                full-stack apps that turn complex spatial data into clear decisions.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -52,11 +66,7 @@ export default function HomePage() {
 
               {/* Proof strip */}
               <div className="mt-10 grid gap-4 md:grid-cols-3">
-                {[
-                  { title: "Modern Web GIS", desc: "Next.js + Leaflet patterns that feel premium, not portal-y." },
-                  { title: "Storytelling UX", desc: "Narratives + layers + guided exploration without overwhelming users." },
-                  { title: "Automation & Pipelines", desc: "Fresh data, scheduled updates, reproducible workflows." },
-                ].map((x) => (
+                {PROOF.map((x) => (
                   <Card key={x.title} className="p-5">
                     <div className="font-semibold">{x.title}</div>
                     <p className="p mt-2 text-sm">{x.desc}</p>
@@ -76,16 +86,18 @@ export default function HomePage() {
           </div>
         </FadeIn>
 
-        {/* INTRO (ported from your Bootstrap “Transforming Data…” section) */}
+        {/* INTRO */}
         <Section>
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto">
               <div className="kicker">Transforming data into actionable insight</div>
               <h2 className="h2 mt-2">Turn maps into decisions</h2>
               <p className="p mt-3">
-                I help organizations use spatial intelligence to understand what’s happening, where it’s happening,
-                and what to do next — with clean design, reliable automation, and experiences people actually use.
+                Spatial intelligence is only useful when people can actually act on it. I help teams understand
+                what’s happening, where it’s happening, and what to do next — with clean UX, reliable automation,
+                and interactive systems people enjoy using.
               </p>
+
               <div className="mt-6 flex gap-3 justify-center flex-wrap">
                 <Button href="/services" variant="ghost">
                   Explore services
@@ -96,7 +108,7 @@ export default function HomePage() {
           </FadeIn>
         </Section>
 
-        {/* FEATURED WORK (your existing section) */}
+        {/* FEATURED WORK */}
         <Section>
           <FadeIn>
             <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -107,6 +119,7 @@ export default function HomePage() {
                   Each project includes the problem, approach, stack, and what changed because of it.
                 </p>
               </div>
+
               <Button href="/projects" variant="ghost">
                 View all
               </Button>
@@ -122,7 +135,7 @@ export default function HomePage() {
           </div>
         </Section>
 
-        {/* CTA (your existing section) */}
+        {/* CTA */}
         <Section>
           <FadeIn>
             <Card className="p-8 md:p-10">
@@ -130,8 +143,9 @@ export default function HomePage() {
               <h2 className="h2 mt-2">Want your data to look like a product?</h2>
               <p className="p mt-3 max-w-2xl">
                 If you can define the audience and the decision you want them to make, I can build the interactive
-                system that gets them there.
+                system that gets them there — fast, clean, and ready to ship.
               </p>
+
               <div className="mt-6 flex gap-3 flex-wrap">
                 <Button href="/contact">Contact</Button>
                 <Button href="/services" variant="ghost">
@@ -142,7 +156,7 @@ export default function HomePage() {
           </FadeIn>
         </Section>
 
-        {/* FOOTER (ported from your Bootstrap footer) */}
+        {/* FOOTER */}
         <footer className="mt-10 mb-10">
           <div className="glass rounded-2xl p-6 text-center">
             <div className="text-sm text-white/70">© {new Date().getFullYear()} Spatialytics Solutions</div>
