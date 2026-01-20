@@ -48,11 +48,12 @@ const LEGACY = [
     tag: "Web GIS",
   },
   {
-    title: "Missions & Mental Health",
-    desc: "Story map connecting missionary journeys and mental resilience.",
-    href: "https://kristinemk72.github.io/missions-and-mental-health/",
-    tag: "Story map",
-  },
+  title: "Missions & Mental Health Hub",
+  desc: "A dashboard-style site for organizing resources, partners, and planning tools around mental wellness and missions.",
+  href: "https://kristinemk72.github.io/missions-and-mental-health/",
+  tag: "Program dashboard & toolkit",
+},
+
   {
     title: "August E. Winter",
     desc: "Historic journeys visualized through geospatial storytelling.",
