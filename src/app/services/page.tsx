@@ -3,6 +3,8 @@ import Section from "@/components/Section";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 
+import "./services.css";
+
 const SERVICES = [
   {
     icon: "🗺️",
@@ -52,28 +54,6 @@ const PACKAGES = [
   },
 ];
 
-function Grid3({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-        gap: 18,
-        marginTop: 22,
-      }}
-    >
-      {children}
-      <style jsx>{`
-        @media (max-width: 900px) {
-          div {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
-
 export default function ServicesPage() {
   return (
     <main>
@@ -112,24 +92,11 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <Grid3>
+          <div className="grid3">
             {SERVICES.map((s) => (
               <Card key={s.title} style={{ padding: 18 }}>
                 <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 14,
-                      display: "grid",
-                      placeItems: "center",
-                      background: "rgba(255,255,255,0.7)",
-                      border: "1px solid rgba(0,0,0,0.06)",
-                      fontSize: 22,
-                      flex: "0 0 auto",
-                    }}
-                  >
+                  <div className="iconBadge" aria-hidden="true">
                     {s.icon}
                   </div>
 
@@ -148,21 +115,21 @@ export default function ServicesPage() {
                 </div>
               </Card>
             ))}
-          </Grid3>
+          </div>
         </Container>
       </Section>
 
       {/* PACKAGES */}
       <Section>
         <Container>
-          <div id="packages" style={{ textAlign: "center", scrollMarginTop: 90 }}>
+          <div id="packages" className="packagesAnchor">
             <h2 className="h2">Service packages</h2>
             <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
               These ranges are a starting point. Final pricing depends on data readiness, integrations, and timeline.
             </p>
           </div>
 
-          <Grid3>
+          <div className="grid3">
             {PACKAGES.map((p) => (
               <Card
                 key={p.name}
@@ -173,30 +140,10 @@ export default function ServicesPage() {
                   boxShadow: p.highlight ? "0 18px 50px rgba(99,102,241,0.12)" : undefined,
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    justifyContent: "space-between",
-                    gap: 12,
-                  }}
-                >
+                <div className="packageHeader">
                   <div style={{ fontWeight: 950, fontSize: 18 }}>{p.name}</div>
 
-                  {p.highlight ? (
-                    <span
-                      style={{
-                        fontSize: 12,
-                        fontWeight: 900,
-                        padding: "6px 10px",
-                        borderRadius: 999,
-                        background: "rgba(99,102,241,0.14)",
-                        border: "1px solid rgba(99,102,241,0.22)",
-                      }}
-                    >
-                      Most common
-                    </span>
-                  ) : null}
+                  {p.highlight ? <span className="pill">Most common</span> : null}
                 </div>
 
                 <div style={{ fontWeight: 950, fontSize: 22, marginTop: 10 }}>{p.price}</div>
@@ -220,7 +167,7 @@ export default function ServicesPage() {
                 </div>
               </Card>
             ))}
-          </Grid3>
+          </div>
 
           <div className="muted" style={{ marginTop: 14, textAlign: "center" }}>
             Tip: if you have a grant cycle or public timeline, I can scope around fixed milestones.
@@ -232,15 +179,7 @@ export default function ServicesPage() {
       <Section className="cta">
         <Container>
           <Card style={{ padding: 20 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 14,
-                flexWrap: "wrap",
-              }}
-            >
+            <div className="ctaRow">
               <div style={{ maxWidth: 760 }}>
                 <div className="kicker">Free consult</div>
                 <div style={{ fontWeight: 950, fontSize: 20, marginTop: 6 }}>
