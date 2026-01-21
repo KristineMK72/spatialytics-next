@@ -4,10 +4,8 @@ import Section from "@/components/Section";
 import FadeIn from "@/components/FadeIn";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import ProjectCard from "@/components/ProjectCard";
 import WowDemo from "@/components/WowDemo";
 import { site } from "@/lib/site";
-import { projects } from "@/content/projects";
 
 const PROOF = [
   {
@@ -65,8 +63,6 @@ const FEATURED_BUILDS: FeaturedBuild[] = [
 ];
 
 export default function HomePage() {
-  const featuredCaseStudies = projects.slice(0, 3);
-
   return (
     <main>
       <Container className="pt-10">
@@ -148,7 +144,7 @@ export default function HomePage() {
           </FadeIn>
         </Section>
 
-        {/* FEATURED BUILDS (not only geospatial) */}
+        {/* FEATURED BUILDS */}
         <Section>
           <FadeIn>
             <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -182,33 +178,6 @@ export default function HomePage() {
                     </Button>
                   </div>
                 </Card>
-              </FadeIn>
-            ))}
-          </div>
-        </Section>
-
-        {/* CASE STUDIES (your projects array) */}
-        <Section>
-          <FadeIn>
-            <div className="flex items-end justify-between gap-6 flex-wrap">
-              <div>
-                <div className="kicker">Case studies</div>
-                <h2 className="h2 mt-2">Deep dives with outcomes</h2>
-                <p className="p mt-2 max-w-2xl">
-                  When you want the full story: the problem, approach, stack, and what changed because of it.
-                </p>
-              </div>
-
-              <Button href="/projects" variant="ghost">
-                View all case studies
-              </Button>
-            </div>
-          </FadeIn>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {featuredCaseStudies.map((p) => (
-              <FadeIn key={p.slug}>
-                <ProjectCard project={p} />
               </FadeIn>
             ))}
           </div>
