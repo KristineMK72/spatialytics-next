@@ -3,32 +3,27 @@ import Section from "@/components/Section";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 
-import "./services.css";
-
 const SERVICES = [
   {
     icon: "🗺️",
     title: "GIS Web Applications",
     desc:
-      "Interactive maps and geospatial tools using ArcGIS, QGIS, and Leaflet/MapLibre. Great for public dashboards, story maps, and decision-support tools.",
+      "Interactive maps and geospatial tools using ArcGIS, QGIS, and Leaflet or MapLibre. Ideal for public dashboards, story maps, and decision support tools.",
     href: "/projects#gis-apps",
-    cta: "View examples",
   },
   {
     icon: "💻",
     title: "Custom Web Development",
     desc:
-      "Responsive websites and apps with modern UI/UX. Ideal for portfolio sites, platforms, landing pages, and tools that need clean design and performance.",
+      "Responsive, modern websites and applications built for clarity, performance, and long-term maintainability.",
     href: "/projects#web-dev",
-    cta: "View examples",
   },
   {
     icon: "⚙️",
     title: "Data Automation",
     desc:
-      "Automate data processing with Python/SQL and integrations. Perfect for repeatable reporting, ETL pipelines, QA workflows, and API-powered dashboards.",
+      "Python, SQL, and API-based automation for repeatable reporting, ETL pipelines, and operational workflows.",
     href: "/projects#data-auto",
-    cta: "View examples",
   },
 ];
 
@@ -36,21 +31,18 @@ const PACKAGES = [
   {
     name: "Basic",
     price: "$1,500 – $3,000",
-    blurb: "Simple GIS map or website",
-    bullets: ["Single-page site or simple map", "Basic styling + mobile friendly", "Light data prep"],
+    desc: "Simple GIS map or website",
   },
   {
     name: "Standard",
     price: "$3,000 – $7,000",
-    blurb: "Interactive map or custom app",
-    bullets: ["Interactive layers + popups", "Reusable components", "Deployed + documented"],
+    desc: "Interactive map or custom application",
     highlight: true,
   },
   {
     name: "Premium",
     price: "$7,000 – $15,000",
-    blurb: "Complex app with APIs or automation",
-    bullets: ["APIs / pipelines / automations", "User flows + admin tooling", "Ongoing support option"],
+    desc: "Complex build with APIs or automation",
   },
 ];
 
@@ -58,24 +50,18 @@ export default function ServicesPage() {
   return (
     <main>
       {/* HERO */}
-      <Section className="hero">
+      <Section>
         <Container>
-          <div style={{ maxWidth: 920 }}>
+          <div className="hero-panel glass p-8 md:p-12">
             <div className="kicker">Spatialytics</div>
-
-            <h1 className="h1" style={{ marginTop: 10 }}>
-              Services & Packages
-            </h1>
-
-            <p className="p" style={{ marginTop: 10, maxWidth: 820 }}>
-              Geospatial, web, and data solutions designed to be clear, usable, and mission-aligned —
-              from quick wins to full builds.
+            <h1 className="h1 mt-3">Services & Pricing</h1>
+            <p className="p max-w-3xl mt-4">
+              Geospatial, web, and data solutions designed to be clear, durable, and mission-aligned.
             </p>
-
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}>
+            <div className="flex gap-3 flex-wrap mt-6">
               <Button href="/contact">Request a quote</Button>
-              <Button href="#packages" variant="ghost">
-                View packages
+              <Button href="#pricing" variant="ghost">
+                View pricing
               </Button>
             </div>
           </div>
@@ -85,118 +71,61 @@ export default function ServicesPage() {
       {/* SERVICES */}
       <Section>
         <Container>
-          <div style={{ textAlign: "center" }}>
-            <h2 className="h2">What I do</h2>
-            <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
-              Pick a lane or combine them — most strong projects blend mapping, engineering, and data.
-            </p>
-          </div>
+          <h2 className="h2 text-center mb-8">What I do</h2>
 
-          <div className="grid3">
+          <div className="grid gap-6 md:grid-cols-3">
             {SERVICES.map((s) => (
-              <Card key={s.title} style={{ padding: 18 }}>
-                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <div className="iconBadge" aria-hidden="true">
-                    {s.icon}
-                  </div>
-
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 900, fontSize: 18 }}>{s.title}</div>
-                    <p className="p" style={{ marginTop: 8 }}>
-                      {s.desc}
-                    </p>
-
-                    <div style={{ marginTop: 12 }}>
-                      <Button href={s.href} variant="ghost">
-                        {s.cta}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+              <Card key={s.title} className="p-6">
+                <div className="text-2xl mb-3">{s.icon}</div>
+                <h3 className="h3 mb-2">{s.title}</h3>
+                <p className="p mb-4">{s.desc}</p>
+                <Button href={s.href} variant="ghost">
+                  View examples
+                </Button>
               </Card>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* PACKAGES */}
+      {/* PRICING */}
       <Section>
         <Container>
-          <div id="packages" className="packagesAnchor">
+          <div id="pricing" className="text-center mb-8 scroll-mt-24">
             <h2 className="h2">Service packages</h2>
-            <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
-              These ranges are a starting point. Final pricing depends on data readiness, integrations, and timeline.
+            <p className="p max-w-3xl mx-auto mt-3">
+              These ranges are a planning guide. Final pricing depends on data readiness, integrations, and scope.
             </p>
           </div>
 
-          <div className="grid3">
+          <div className="grid gap-6 md:grid-cols-3">
             {PACKAGES.map((p) => (
               <Card
                 key={p.name}
-                style={{
-                  padding: 18,
-                  borderRadius: 22,
-                  border: p.highlight ? "1px solid rgba(99,102,241,0.35)" : undefined,
-                  boxShadow: p.highlight ? "0 18px 50px rgba(99,102,241,0.12)" : undefined,
-                }}
+                className={`p-6 ${p.highlight ? "ring-2 ring-accent" : ""}`}
               >
-                <div className="packageHeader">
-                  <div style={{ fontWeight: 950, fontSize: 18 }}>{p.name}</div>
-
-                  {p.highlight ? <span className="pill">Most common</span> : null}
-                </div>
-
-                <div style={{ fontWeight: 950, fontSize: 22, marginTop: 10 }}>{p.price}</div>
-                <div className="muted" style={{ marginTop: 6 }}>
-                  {p.blurb}
-                </div>
-
-                <ul style={{ marginTop: 14, paddingLeft: 18 }}>
-                  {p.bullets.map((b) => (
-                    <li key={b} className="muted" style={{ marginBottom: 6 }}>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-
-                <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                  <Button href="/contact">Get quote</Button>
-                  <Button href="/projects" variant="ghost">
-                    See examples
-                  </Button>
-                </div>
+                <h3 className="h3 mb-2">{p.name}</h3>
+                <div className="text-2xl font-extrabold mb-1">{p.price}</div>
+                <p className="p mb-5">{p.desc}</p>
+                <Button href="/contact">Get quote</Button>
               </Card>
             ))}
-          </div>
-
-          <div className="muted" style={{ marginTop: 14, textAlign: "center" }}>
-            Tip: if you have a grant cycle or public timeline, I can scope around fixed milestones.
           </div>
         </Container>
       </Section>
 
       {/* CTA */}
-      <Section className="cta">
+      <Section>
         <Container>
-          <Card style={{ padding: 20 }}>
-            <div className="ctaRow">
-              <div style={{ maxWidth: 760 }}>
-                <div className="kicker">Free consult</div>
-                <div style={{ fontWeight: 950, fontSize: 20, marginTop: 6 }}>
-                  Ready to transform your data?
-                </div>
-                <p className="p" style={{ marginTop: 8 }}>
-                  Tell me what you’re trying to build (or fix). I’ll suggest the fastest path and a realistic scope.
-                </p>
-              </div>
-
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <Button href="/contact">Get started</Button>
-                <Button href="/projects" variant="ghost">
-                  Browse projects
-                </Button>
-              </div>
+          <Card className="p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <div className="kicker">Free consult</div>
+              <h3 className="h3 mt-2">Ready to transform your data?</h3>
+              <p className="p mt-2 max-w-xl">
+                Tell me what you’re trying to build — I’ll suggest the fastest path and a realistic scope.
+              </p>
             </div>
+            <Button href="/contact">Get started</Button>
           </Card>
         </Container>
       </Section>
