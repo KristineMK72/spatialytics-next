@@ -9,16 +9,16 @@ import { site } from "@/lib/site";
 
 const PROOF = [
   {
-    title: "Web GIS that feels like a product",
-    desc: "MapLibre/Leaflet builds with clean UX — not clunky portal experiences.",
+    title: "Values-forward, evidence-based advocacy",
+    desc: "Clear, defensible insights that support better public outcomes — without losing the human story.",
   },
   {
-    title: "Story-first interaction design",
-    desc: "Guided exploration that keeps layers, narrative, and decisions clear.",
+    title: "Planning + GIS + product-grade web",
+    desc: "Modern Web GIS, dashboards, and explainers that feel like real products — built for decision-makers.",
   },
   {
-    title: "Automation & reliable pipelines",
-    desc: "Fresh data, scheduled updates, and reproducible workflows you can trust.",
+    title: "Reliable data + sustainable workflows",
+    desc: "Automation, documentation, and reproducible pipelines so your work stays current and trustworthy.",
   },
 ] as const;
 
@@ -69,34 +69,37 @@ export default function HomePage() {
         {/* HERO */}
         <FadeIn>
           <div className="glass rounded-[2.25rem] p-8 md:p-14 overflow-hidden relative">
-            {/* glow blobs */}
-            <div className="absolute inset-0 pointer-events-none opacity-90">
-              <div className="absolute -top-24 -left-16 h-80 w-80 rounded-full bg-purple-500/25 blur-3xl" />
-              <div className="absolute top-10 -right-20 h-80 w-80 rounded-full bg-sky-400/25 blur-3xl" />
-              <div className="absolute -bottom-28 left-1/3 h-96 w-96 rounded-full bg-pink-500/20 blur-3xl" />
+            {/* glow blobs (keep, but calmer) */}
+            <div className="absolute inset-0 pointer-events-none opacity-80">
+              <div className="absolute -top-24 -left-16 h-80 w-80 rounded-full bg-sky-400/20 blur-3xl" />
+              <div className="absolute top-10 -right-20 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
+              <div className="absolute -bottom-28 left-1/3 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl" />
             </div>
 
             <div className="relative">
-              <div className="kicker">Geospatial intelligence · Web development · Data automation</div>
+              <div className="kicker">
+                Advocacy · Social sustainability · GIS + data + technology
+              </div>
 
               <h1 className="h1 mt-4">
-                Spatialytics Solutions
+                <span className="opacity-95">Advocacy Through</span>
                 <br />
-                <span className="opacity-90">Modern web experiences for real-world decisions.</span>
+                <span className="opacity-95">Spatial Intelligence</span>
               </h1>
 
               <p className="p mt-6 max-w-2xl">
-                I build interactive systems that turn complex data into clarity — web maps, dashboards,
-                public-facing explainers, and full-stack apps that look polished and ship fast.
+                We partner with agencies and mission-aligned organizations to integrate GIS, environmental planning,
+                and data-driven technology in service of social sustainability — strengthening the systems that support
+                stable, resilient communities.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/contact">Contact Kris</Button>
+                <Button href="/contact">Partner with Spatialytics</Button>
                 <Button href="/projects" variant="ghost">
-                  View work
+                  Explore projects
                 </Button>
                 <Button href="/services" variant="ghost">
-                  Services
+                  How we collaborate
                 </Button>
               </div>
 
@@ -116,7 +119,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-6 text-xs text-white/55">
-                {site.name} · Built to ship quickly, iterate safely, and look good doing it.
+                {site.name} · Built to collaborate, ship responsibly, and measure impact.
               </div>
             </div>
           </div>
@@ -126,19 +129,19 @@ export default function HomePage() {
         <Section>
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto">
-              <div className="kicker">What I build</div>
-              <h2 className="h2 mt-2">Design-led development with technical depth</h2>
+              <div className="kicker">Our approach</div>
+              <h2 className="h2 mt-2">Mission-first systems built for real decisions</h2>
               <p className="p mt-3">
-                Spatial intelligence is only useful when people can actually act on it. I help teams and communities
-                understand what’s happening, where it’s happening, and what to do next — with clean UX, reliable
-                automation, and interactive systems people enjoy using.
+                Spatial intelligence only matters when it leads to action. We help partners understand what’s happening,
+                where it’s happening, and what to do next — through accessible mapping, clear data storytelling, and
+                product-grade tools designed for public-facing clarity and internal decision-making.
               </p>
 
               <div className="mt-6 flex gap-3 justify-center flex-wrap">
                 <Button href="/services" variant="ghost">
-                  Explore services
+                  Partnership model
                 </Button>
-                <Button href="/contact">Start a project</Button>
+                <Button href="/contact">Start a collaboration</Button>
               </div>
             </div>
           </FadeIn>
@@ -149,16 +152,17 @@ export default function HomePage() {
           <FadeIn>
             <div className="flex items-end justify-between gap-6 flex-wrap">
               <div>
-                <div className="kicker">Featured builds</div>
-                <h2 className="h2 mt-2">Live demos & web products</h2>
+                <div className="kicker">Featured work</div>
+                <h2 className="h2 mt-2">Public demos & shipped products</h2>
                 <p className="p mt-2 max-w-2xl">
-                  A quick tour of shipped work — WebGL demos, civic explainers, landing pages, and production sites.
+                  A quick tour of interactive work — WebGL demos, civic explainers, dashboards, landing experiences,
+                  and production sites.
                 </p>
               </div>
 
               <div className="flex gap-3 flex-wrap">
                 <Button href="/projects" variant="ghost">
-                  View all work
+                  View all projects
                 </Button>
               </div>
             </div>
@@ -187,17 +191,17 @@ export default function HomePage() {
         <Section>
           <FadeIn>
             <Card className="p-8 md:p-10">
-              <div className="kicker">Let’s build something sharp</div>
-              <h2 className="h2 mt-2">Want your data to look like a real product?</h2>
+              <div className="kicker">Collaborate with Spatialytics</div>
+              <h2 className="h2 mt-2">Want data that supports action — and values?</h2>
               <p className="p mt-3 max-w-2xl">
-                If you can define the audience and the decision you want them to make, I can build the interactive
-                experience that gets them there — fast, clean, and ready to ship.
+                If you can define the audience, the decision, and the outcome you’re aiming for, we can build the
+                mapping, analytics, and web experience that gets you there — clear, modern, and ready to use.
               </p>
 
               <div className="mt-6 flex gap-3 flex-wrap">
                 <Button href="/contact">Contact</Button>
                 <Button href="/services" variant="ghost">
-                  See services
+                  See how we work
                 </Button>
               </div>
             </Card>
@@ -207,7 +211,7 @@ export default function HomePage() {
         {/* FOOTER */}
         <footer className="mt-10 mb-10">
           <div className="glass rounded-2xl p-6 text-center">
-            <div className="text-sm text-white/70">© {new Date().getFullYear()} Spatialytics Solutions</div>
+            <div className="text-sm text-white/70">© {new Date().getFullYear()} Spatialytics</div>
             <div className="mt-2 text-sm">
               <span className="text-white/60">Contact:</span>{" "}
               <a className="underline underline-offset-4" href="mailto:kris.spatialytics@gritandgrace.buzz">
