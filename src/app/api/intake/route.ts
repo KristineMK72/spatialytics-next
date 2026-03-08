@@ -43,28 +43,69 @@ export async function POST(req: Request) {
 
     const resend = new Resend(apiKey);
 
-    const result = await resend.emails.send({
+    /* EMAIL TO YOU (lead notification) */
+    const adminEmail = await resend.emails.send({
       from,
       to,
       replyTo: email,
       subject: `New Spatialytics Project — ${name}`,
       html: `
         <h2>New Spatialytics Intake</h2>
+
         <p><strong>Project type:</strong> ${projectType || "Not provided"}</p>
         <p><strong>Organization:</strong> ${organization || "Not provided"}</p>
         <p><strong>Timeline:</strong> ${timeline || "Not provided"}</p>
+
+        <hr/>
+
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+
         <h3>Notes</h3>
         <p>${notes || "No notes provided"}</p>
       `,
     });
 
-    console.log("Resend result:", result);
+    /* CONFIRMATION EMAIL TO CLIENT */
+    const clientEmail = await resend.emails.send({
+      from,
+      to: email,
+      subject: "Your Spatialytics project request was received",
+      html: `
+        <h2>Thanks for contacting Spatialytics</h2>
 
-    return NextResponse.json({ success: true, result });
+        <p>Hi ${name},</p>
+
+        <p>Thanks for reaching out about your project.</p>
+
+        <p>I received your request and will review the details shortly.</p>
+
+        <p><strong>Your submission summary:</strong></p>
+        <ul>
+          <li>Project type: ${projectType || "Not provided"}</li>
+          <li>Organization: ${organization || "Not provided"}</li>
+          <li>Timeline: ${timeline || "Not provided"}</li>
+        </ul>
+
+        <p>If you'd like to add more details, simply reply to this email.</p>
+
+        <p>— Kris<br/>
+        Spatialytics<br/>
+        https://spatialytics.space</p>
+      `,
+    });
+
+    console.log("Admin email:", adminEmail);
+    console.log("Client email:", clientEmail);
+
+    return NextResponse.json({
+      success: true,
+      adminEmail,
+      clientEmail,
+    });
   } catch (error) {
     console.error("Intake route error:", error);
+
     return NextResponse.json(
       {
         error: "Failed to send intake email",
