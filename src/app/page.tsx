@@ -214,9 +214,10 @@ export default function HomePage() {
             <div className="text-sm text-white/70">© {new Date().getFullYear()} Spatialytics</div>
             <div className="mt-2 text-sm">
               <span className="text-white/60">Contact:</span>{" "}
-              <a className="underline underline-offset-4" href="mailto:kris.spatialytics@gritandgrace.buzz">
-                kris.spatialytics@gritandgrace.buzz
-              </a>
+              <a  href="/project-intake"
+  className="underline underline-offset-4 hover:text-cyan-300 transition"
+> Start a project or send a message →
+</a>
             </div>
           </div>
         </footer>
