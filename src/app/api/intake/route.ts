@@ -8,20 +8,28 @@ export async function POST(req: Request) {
     const from = process.env.INTAKE_FROM_EMAIL;
 
     if (!apiKey) {
+      console.error("Missing RESEND_API_KEY");
       return NextResponse.json(
         { error: "Missing RESEND_API_KEY" },
         { status: 500 }
       );
     }
 
-    if (!to || !from) {
+    if (!to) {
+      console.error("Missing INTAKE_TO_EMAIL");
       return NextResponse.json(
-        { error: "Missing intake email environment variables" },
+        { error: "Missing INTAKE_TO_EMAIL" },
         { status: 500 }
       );
     }
 
-    const resend = new Resend(apiKey);
+    if (!from) {
+      console.error("Missing INTAKE_FROM_EMAIL");
+      return NextResponse.json(
+        { error: "Missing INTAKE_FROM_EMAIL" },
+        { status: 500 }
+      );
+    }
 
     const body = await req.json();
     const { projectType, organization, timeline, name, email, notes } = body;
@@ -33,7 +41,9 @@ export async function POST(req: Request) {
       );
     }
 
-    await resend.emails.send({
+    const resend = new Resend(apiKey);
+
+    const result = await resend.emails.send({
       from,
       to,
       replyTo: email,
@@ -50,11 +60,16 @@ export async function POST(req: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true });
+    console.log("Resend result:", result);
+
+    return NextResponse.json({ success: true, result });
   } catch (error) {
     console.error("Intake route error:", error);
     return NextResponse.json(
-      { error: "Failed to send intake email" },
+      {
+        error: "Failed to send intake email",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
