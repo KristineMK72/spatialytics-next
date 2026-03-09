@@ -8,23 +8,31 @@ const SERVICES = [
     icon: "🗺️",
     title: "GIS Web Applications",
     desc:
-      "Interactive maps and geospatial tools using ArcGIS, QGIS, and Leaflet/MapLibre. Great for public dashboards, story maps, and decision-support tools.",
+      "Interactive maps, story maps, and spatial tools built with modern web GIS workflows. Ideal for public dashboards, community storytelling, planning tools, and decision-support applications.",
     href: "/projects#gis-apps",
     cta: "View examples",
   },
   {
     icon: "💻",
-    title: "Custom Web Development",
+    title: "Custom Websites",
     desc:
-      "Responsive websites and apps with modern UI/UX. Ideal for portfolio sites, platforms, landing pages, and tools that need clean design and performance.",
+      "Modern websites for businesses, nonprofits, and mission-driven projects. Built for performance, mobile responsiveness, clean design, and clear calls to action.",
     href: "/projects#web-dev",
+    cta: "View examples",
+  },
+  {
+    icon: "📊",
+    title: "Dashboards & Data Visualization",
+    desc:
+      "Custom dashboards and visual reporting tools that turn raw data into something people can actually understand and use.",
+    href: "/projects#dashboards",
     cta: "View examples",
   },
   {
     icon: "⚙️",
     title: "Data Automation",
     desc:
-      "Automate data processing with Python/SQL and integrations. Perfect for repeatable reporting, ETL pipelines, QA workflows, and API-powered dashboards.",
+      "Automate workflows with Python, SQL, APIs, and repeatable reporting pipelines. Great for teams that need cleaner, faster, and more reliable data processes.",
     href: "/projects#data-auto",
     cta: "View examples",
   },
@@ -32,23 +40,78 @@ const SERVICES = [
 
 const PACKAGES = [
   {
-    name: "Basic",
-    price: "$1,500 – $3,000",
-    blurb: "Simple GIS map or website",
-    bullets: ["Single-page site or simple map", "Basic styling + mobile friendly", "Light data prep"],
+    name: "Starter Website",
+    price: "from $49/month",
+    blurb:
+      "A low-barrier option for small businesses that need a polished web presence without a big upfront cost.",
+    bullets: [
+      "Simple modern website",
+      "Mobile-friendly design",
+      "Hosting included",
+      "Light content updates",
+      "Great for salons, local services, and startups",
+    ],
   },
   {
-    name: "Standard",
-    price: "$3,000 – $7,000",
-    blurb: "Interactive map or custom app",
-    bullets: ["Interactive layers + popups", "Reusable components", "Deployed + documented"],
+    name: "Professional Website",
+    price: "$1,500+",
+    blurb:
+      "A custom website build for organizations that need more pages, stronger branding, and a more tailored experience.",
+    bullets: [
+      "Custom design and layout",
+      "SEO-ready structure",
+      "Contact forms and lead capture",
+      "Service / portfolio / about pages",
+      "Optional ongoing support",
+    ],
     highlight: true,
   },
   {
-    name: "Premium",
-    price: "$7,000 – $15,000",
-    blurb: "Complex app with APIs or automation",
-    bullets: ["APIs / pipelines / automations", "User flows + admin tooling", "Ongoing support option"],
+    name: "Spatial Intelligence Project",
+    price: "$2,500+",
+    blurb:
+      "A higher-value build that combines websites, maps, dashboards, or data storytelling into one powerful experience.",
+    bullets: [
+      "Interactive maps or dashboards",
+      "Spatial data visualization",
+      "GIS-focused workflows",
+      "Storytelling and public-facing tools",
+      "Best for nonprofits, communities, research, and planning",
+    ],
+  },
+  {
+    name: "Ongoing Support",
+    price: "$39–$199/month",
+    blurb:
+      "Support plans for clients who want help keeping their site, dashboard, or mapping tools current and polished.",
+    bullets: [
+      "Hosting and monitoring",
+      "Small content updates",
+      "Priority support options",
+      "Technical maintenance",
+      "Ideal after launch",
+    ],
+  },
+];
+
+const EXAMPLES = [
+  {
+    title: "Interactive maps",
+    text:
+      "Public-facing map experiences, story maps, and tools that help people explore place-based information.",
+    href: "/projects#gis-apps",
+  },
+  {
+    title: "Business websites",
+    text:
+      "Clean, modern websites built to help organizations communicate clearly and convert visitors into inquiries.",
+    href: "/projects#web-dev",
+  },
+  {
+    title: "Dashboards",
+    text:
+      "Visual tools that make data easier to understand for leadership, community members, or stakeholders.",
+    href: "/projects#dashboards",
   },
 ];
 
@@ -58,22 +121,32 @@ export default function ServicesPage() {
       {/* HERO */}
       <Section className="hero">
         <Container>
-          <div style={{ maxWidth: 920 }}>
+          <div style={{ maxWidth: 940 }}>
             <div className="kicker">Spatialytics</div>
 
             <h1 className="h1" style={{ marginTop: 10 }}>
-              Services & Packages
+              Services, Packages & Project Paths
             </h1>
 
-            <p className="p" style={{ marginTop: 10, maxWidth: 820 }}>
-              Geospatial, web, and data solutions designed to be clear, usable, and mission-aligned —
-              from quick wins to full builds.
+            <p className="p" style={{ marginTop: 10, maxWidth: 860 }}>
+              Spatialytics combines web design, GIS, dashboards, and data
+              storytelling to build tools that are clear, useful, and
+              mission-aligned. Whether you need a modern website, an
+              interactive map, or a more advanced spatial project, there’s a
+              path that fits.
             </p>
 
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}>
-              <Button href="/contact">Request a quote</Button>
+            <div
+              style={{
+                display: "flex",
+                gap: 12,
+                flexWrap: "wrap",
+                marginTop: 18,
+              }}
+            >
+              <Button href="/project-intake">Start a project</Button>
               <Button href="/projects" variant="ghost">
-                View work
+                View examples
               </Button>
             </div>
           </div>
@@ -86,14 +159,17 @@ export default function ServicesPage() {
           <div style={{ textAlign: "center" }}>
             <h2 className="h2">What I do</h2>
             <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
-              Pick a lane or combine them — most strong projects blend mapping, engineering, and data.
+              Most strong projects combine design, mapping, engineering, and
+              data. You can start with one lane — or build across several.
             </p>
           </div>
 
           <div className="grid" style={{ marginTop: 22 }}>
             {SERVICES.map((s) => (
               <Card key={s.title} style={{ padding: 18 }}>
-                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <div
+                  style={{ display: "flex", gap: 12, alignItems: "flex-start" }}
+                >
                   <div
                     aria-hidden="true"
                     style={{
@@ -112,7 +188,9 @@ export default function ServicesPage() {
                   </div>
 
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 900, fontSize: 18 }}>{s.title}</div>
+                    <div style={{ fontWeight: 900, fontSize: 18 }}>
+                      {s.title}
+                    </div>
                     <p className="p" style={{ marginTop: 8 }}>
                       {s.desc}
                     </p>
@@ -134,9 +212,10 @@ export default function ServicesPage() {
       <Section>
         <Container>
           <div style={{ textAlign: "center" }}>
-            <h2 className="h2">Service packages</h2>
+            <h2 className="h2">Packages</h2>
             <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
-              Pricing is scoped to your data, timeline, and complexity — these ranges help you plan.
+              These package ranges are designed to help you understand the most
+              common ways clients work with Spatialytics.
             </p>
           </div>
 
@@ -147,8 +226,12 @@ export default function ServicesPage() {
                 style={{
                   padding: 18,
                   borderRadius: 22,
-                  border: p.highlight ? "1px solid rgba(99,102,241,0.35)" : undefined,
-                  boxShadow: p.highlight ? "0 18px 50px rgba(99,102,241,0.12)" : undefined,
+                  border: p.highlight
+                    ? "1px solid rgba(99,102,241,0.35)"
+                    : undefined,
+                  boxShadow: p.highlight
+                    ? "0 18px 50px rgba(99,102,241,0.12)"
+                    : undefined,
                 }}
               >
                 <div
@@ -177,7 +260,10 @@ export default function ServicesPage() {
                   ) : null}
                 </div>
 
-                <div style={{ fontWeight: 950, fontSize: 22, marginTop: 10 }}>{p.price}</div>
+                <div style={{ fontWeight: 950, fontSize: 22, marginTop: 10 }}>
+                  {p.price}
+                </div>
+
                 <div className="muted" style={{ marginTop: 6 }}>
                   {p.blurb}
                 </div>
@@ -190,8 +276,15 @@ export default function ServicesPage() {
                   ))}
                 </ul>
 
-                <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                  <Button href="/contact">Get quote</Button>
+                <div
+                  style={{
+                    marginTop: 14,
+                    display: "flex",
+                    gap: 10,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <Button href="/project-intake">Get quote</Button>
                   <Button href="/projects" variant="ghost">
                     See examples
                   </Button>
@@ -200,8 +293,37 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <div className="muted" style={{ marginTop: 14, textAlign: "center" }}>
-            Tip: if you have a grant cycle or public timeline, I can scope around fixed milestones.
+          <div className="muted" style={{ marginTop: 16, textAlign: "center" }}>
+            Need something in between? I can scope around your goals, data,
+            budget, timeline, or grant cycle.
+          </div>
+        </Container>
+      </Section>
+
+      {/* EXAMPLES */}
+      <Section>
+        <Container>
+          <div style={{ textAlign: "center" }}>
+            <h2 className="h2">Examples by type</h2>
+            <p className="p" style={{ maxWidth: 860, margin: "10px auto 0" }}>
+              Not sure where your idea fits? Start by browsing examples.
+            </p>
+          </div>
+
+          <div className="grid" style={{ marginTop: 22 }}>
+            {EXAMPLES.map((ex) => (
+              <Card key={ex.title} style={{ padding: 18 }}>
+                <div style={{ fontWeight: 900, fontSize: 18 }}>{ex.title}</div>
+                <p className="p" style={{ marginTop: 8 }}>
+                  {ex.text}
+                </p>
+                <div style={{ marginTop: 12 }}>
+                  <Button href={ex.href} variant="ghost">
+                    View examples
+                  </Button>
+                </div>
+              </Card>
+            ))}
           </div>
         </Container>
       </Section>
@@ -222,15 +344,17 @@ export default function ServicesPage() {
               <div style={{ maxWidth: 760 }}>
                 <div className="kicker">Free consult</div>
                 <div style={{ fontWeight: 950, fontSize: 20, marginTop: 6 }}>
-                  Ready to transform your data?
+                  Ready to build something clear, useful, and strategic?
                 </div>
                 <p className="p" style={{ marginTop: 8 }}>
-                  Tell me what you’re trying to build (or fix). I’ll suggest the fastest path and a realistic scope.
+                  Tell me what you’re trying to create — website, dashboard,
+                  interactive map, or data workflow — and I’ll help you find
+                  the best-fit path.
                 </p>
               </div>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <Button href="/contact">Get started</Button>
+                <Button href="/project-intake">Get started</Button>
                 <Button href="/projects" variant="ghost">
                   Browse projects
                 </Button>
