@@ -1,6 +1,6 @@
 /* ==========================================================
-   Spatialytics — Advocacy Through Spatial Intelligence
-   Modern Dark Theme · Spatial · Blue-led · Institutional
+   Spatialytics — Astro-inspired palette
+   slate-950 base · cyan accents · topo texture
 ========================================================== */
 
 @import "tailwindcss";
@@ -8,25 +8,26 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ==========================================================
-   THEME TOKENS
+   THEME TOKENS (Astro-aligned)
 ========================================================== */
 
 :root {
-  /* Core palette */
-  --bg0: #0c111c;
-  --bg1: #121a2c;
-  --ink: #e6f0ff;
-  --muted: rgba(230, 240, 255, 0.68);
+  /* Core palette — matches spatialytics-astro */
+  --bg0: #020617;          /* slate-950 */
+  --bg1: #0f172a;          /* slate-900 */
+  --ink: #f1f5f9;          /* slate-100 */
+  --muted: rgba(241, 245, 249, 0.68);
 
-  /* Brand blue */
-  --brand-blue: #3b82f6;
-  --brand-blue-soft: rgba(59, 130, 246, 0.18);
+  /* Brand cyan (Astro uses cyan-400 → cyan-600) */
+  --brand: #22d3ee;        /* cyan-400 */
+  --brand-soft: rgba(34, 211, 238, 0.16);
+  --brand-strong: #0891b2; /* cyan-600 */
 
   /* Glass system */
-  --glass: rgba(255, 255, 255, 0.06);
+  --glass: rgba(255, 255, 255, 0.05);
   --stroke: rgba(255, 255, 255, 0.10);
 
-  --shadow: 0 28px 90px -40px rgba(0, 0, 0, 0.8);
+  --shadow: 0 28px 90px -40px rgba(0, 0, 0, 0.85);
   --radius: 0.75rem;
 }
 
@@ -40,36 +41,36 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--ink);
+  background-color: var(--bg0);
 
-  background:
+  background-image:
     /* subtle topo-style contour rings */
     repeating-radial-gradient(
       circle at 28% 34%,
-      rgba(255,255,255,0.045) 0 1px,
-      transparent 1px 20px
+      rgba(255,255,255,0.04) 0 1px,
+      transparent 1px 22px
     ),
     repeating-radial-gradient(
       circle at 72% 60%,
-      rgba(255,255,255,0.035) 0 1px,
-      transparent 1px 24px
+      rgba(255,255,255,0.03) 0 1px,
+      transparent 1px 26px
     ),
 
     /* soft spatial grid */
-    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
-    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
 
-    /* blue atmosphere wash */
+    /* cyan atmosphere wash (Astro-like) */
     radial-gradient(
-      1000px 600px at 20% 10%,
-      rgba(59,130,246,0.22),
+      1000px 600px at 18% 8%,
+      rgba(34, 211, 238, 0.12),
       transparent 65%
     ),
-
     radial-gradient(
-      900px 600px at 80% 20%,
-      rgba(59,130,246,0.14),
+      900px 550px at 82% 18%,
+      rgba(8, 145, 178, 0.10),
       transparent 70%
     ),
 
@@ -77,11 +78,10 @@ body {
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-/* Prevent unwanted light backgrounds */
 main { background: transparent; }
 
 ::selection {
-  background: rgba(59,130,246,0.35);
+  background: rgba(34, 211, 238, 0.35);
 }
 
 /* ==========================================================
@@ -113,7 +113,7 @@ main { background: transparent; }
   font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(230, 240, 255, 0.6);
+  color: rgba(241, 245, 249, 0.55);
 }
 
 /* ==========================================================
@@ -123,10 +123,9 @@ main { background: transparent; }
 .glass {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.04)
+    rgba(255,255,255,0.07),
+    rgba(255,255,255,0.03)
   );
-
   border: 1px solid var(--stroke);
   border-radius: var(--radius);
   backdrop-filter: blur(18px);
@@ -142,17 +141,16 @@ main { background: transparent; }
   border: 1px solid var(--stroke);
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.07),
-    rgba(255,255,255,0.04)
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.03)
   );
-
   border-radius: var(--radius);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(59,130,246,0.35);
+  border-color: rgba(34, 211, 238, 0.35);
   box-shadow: 0 30px 100px -40px rgba(0,0,0,0.85);
 }
 
@@ -161,7 +159,7 @@ main { background: transparent; }
 ========================================================== */
 
 a {
-  color: rgba(230,240,255,0.9);
+  color: rgba(241,245,249,0.9);
   text-decoration: none;
 }
 
@@ -179,9 +177,9 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 15, 28, 0.65);
+  background: rgba(2, 6, 23, 0.75); /* slate-950 */
   backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--stroke);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6); /* slate-700/60 */
 }
 
 .nav-inner {
@@ -196,19 +194,56 @@ a:hover {
 .brand {
   font-weight: 900;
   font-size: 1.1rem;
-  color: rgba(230,240,255,0.95);
+  color: rgba(241,245,249,0.95);
 }
 
 .nav-link {
   padding: 10px 16px;
   border-radius: 999px;
-  color: rgba(230,240,255,0.75);
+  color: rgba(241,245,249,0.72);
   transition: all 200ms ease;
 }
 
 .nav-link:hover {
-  background: rgba(59,130,246,0.12);
+  background: rgba(34, 211, 238, 0.12);
   color: #fff;
+}
+
+/* Mobile nav (if used) */
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 18px 18px;
+  background: rgba(2, 6, 23, 0.95);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.nav-mobile-link {
+  padding: 12px 16px;
+  border-radius: 0.5rem;
+  color: rgba(241,245,249,0.85);
+}
+
+.nav-mobile-link:hover {
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.burger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(241,245,249,0.85);
+  border-radius: 1px;
 }
 
 /* ==========================================================
@@ -225,24 +260,22 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
-
   background:
     radial-gradient(
       800px 500px at 25% 30%,
-      rgba(59,130,246,0.18),
+      rgba(34, 211, 238, 0.12),
       transparent 65%
     ),
     radial-gradient(
       900px 600px at 75% 25%,
-      rgba(59,130,246,0.15),
+      rgba(8, 145, 178, 0.10),
       transparent 70%
     ),
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.04),
       transparent
     );
-
   pointer-events: none;
 }
 
@@ -252,10 +285,10 @@ a:hover {
 }
 
 /* ==========================================================
-   DARK MODE OVERRIDES
+   UTILITY
 ========================================================== */
 
 .dark {
-  --ink: #f3f7ff;
-  --muted: rgba(243,247,255,0.7);
+  --ink: #f8fafc;
+  --muted: rgba(248, 250, 252, 0.7);
 }
